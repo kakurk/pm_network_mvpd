@@ -15,7 +15,8 @@ roi_list = ['ANG', 'PRC', 'PHC']
 sub_list = ['sub-01', 'sub-02', 'sub-03', 'sub-04', 'sub-07', 'sub-08', 'sub-09', 'sub-10', 'sub-11', 'sub-12', 'sub-13', 'sub-14', 'sub-15', 'sub-16', 'sub-18', 'sub-19', 'sub-21', 'sub-22', 'sub-23', 'sub-24']
 run_list = [1,2,3,4]
 roidata_save_dir = '/gsfs0/data/kurkela/Desktop/PyMVPD/results/roidata_noMotion/'
-var_expl = []
+var_expl_pc1 = []
+var_expl_pc23 = []
 subject = []
 roi = []
 run_num = []
@@ -36,11 +37,15 @@ for roi_name in roi_list:
             pca_ROI_1.fit(roi_data)
             
             # Percentage of variance explained by the first principal component
-            var_expl.append(pca_ROI_1.explained_variance_ratio_[0])
+            var_expl_pc1.append(pca_ROI_1.explained_variance_ratio_[0])
+            
+            # Percentage of variance explained by the second and third PCs
+            var_expl_pc23.append(np.sum(pca_ROI_1.explained_variance_ratio_[[1,2]]))
+            
             subject.append(sub)
             roi.append(roi_name)
             run_num.append(run)
             
-d  = {'subject': subject, 'run': run_num, 'roi': roi, 'var_expl': var_expl}
+d  = {'subject': subject, 'run': run_num, 'roi': roi, 'var_expl_pc1': var_expl_pc1, 'var_expl_pc23': var_expl_pc23}
 df = pd.DataFrame(data=d)
 df.to_csv('roi_homogeneity.csv', index=False)
