@@ -11,7 +11,7 @@ import pandas as pd
 from sklearn.decomposition import PCA
 #from analysis_spec import roidata_save_dir, roi_1_name
 
-roi_list = ['ANG', 'PRC', 'PHC']
+roi_list = ['ANG', 'PRC', 'PHC', 'whitematter']
 sub_list = ['sub-01', 'sub-02', 'sub-03', 'sub-04', 'sub-07', 'sub-08', 'sub-09', 'sub-10', 'sub-11', 'sub-12', 'sub-13', 'sub-14', 'sub-15', 'sub-16', 'sub-18', 'sub-19', 'sub-21', 'sub-22', 'sub-23', 'sub-24']
 run_list = [1,2,3,4]
 roidata_save_dir = '/gsfs0/data/kurkela/Desktop/PyMVPD/results/roidata_noMotion/'
